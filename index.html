@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>RPG Character Manager</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="container">
+
+        <h1>RPG Character Creator</h1>
+
+        <!-- Character Form -->
+        <form id="characterForm">
+
+            <!-- ===== CHARACTER BASIC INFO ===== -->
+            <h2>Character Information</h2>
+
+            <!-- Name (required) -->
+            <label>Name:</label>
+            <input type="text" id="name" maxlength="100" required>
+
+            <!-- Race -->
+            <label>Race:</label>
+            <input type="text" id="race" required>
+
+            <!-- Age -->
+            <label>Age:</label>
+            <input type="number" id="age" min="0" max="999" required>
+
+            <!-- Gender -->
+            <label>Gender:</label>
+            <input type="text" id="gender" required>
+
+            <!-- Profession -->
+            <label>Profession:</label>
+            <input type="text" id="profession" required>
+
+            <!-- Image URL -->
+            <label>Image URL:</label>
+            <input type="text" id="image">
+
+            <!-- ===== STATUS SECTION ===== -->
+            <h2>Status</h2>
+
+            <!-- Health -->
+            <label>Health:</label>
+            <input type="number" id="health" min="0" max="100" required>
+
+            <!-- Mana -->
+            <label>Mana:</label>
+            <input type="number" id="mana" min="0" max="100" required>
+
+            <!-- ===== ATTRIBUTES SECTION ===== -->
+            <h2>Attributes</h2>
+
+            <!-- Vigor -->
+            <label>Vigor:</label>
+            <input type="number" id="vigor" min="0" max="100" required>
+
+            <!-- Skill -->
+            <label>Skill:</label>
+            <input type="number" id="skill" min="0" max="100" required>
+
+            <!-- Perception -->
+            <label>Perception:</label>
+            <input type="number" id="perception" min="0" max="100" required>
+
+            <!-- Intelligence -->
+            <label>Intelligence:</label>
+            <input type="number" id="intelligence" min="0" max="100" required>
+
+            <!-- Mastery -->
+            <label>Mastery:</label>
+            <input type="number" id="mastery" min="0" max="100" required>
+
+            <!-- Submit Button -->
+            <button type="submit">Save Character</button>
+
+        </form>
+
+        <!-- Area to display saved characters -->
+        <div id="characterList"></div>
+
+    </div>
+    <script src="script.js"></script>
+</body>
+</html>
