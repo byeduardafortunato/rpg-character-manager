@@ -1,18 +1,21 @@
 // RPG Character Manager
-// Step 1: Capture form data
-// Etapa 1: Capturar dados do formulário
+// Step 2: Save characters in localStorage
+// Etapa 2: Salvar personagens no localStorage
 
 // Get form element
 // Pega o formulário
 const form = document.getElementById("characterForm");
 
+// Get characters from localStorage or create empty array
+// Pega personagens salvos ou cria lista vazia
+let characters = JSON.parse(localStorage.getItem("characters")) || [];
+
 // Listen to submit event
-// Escuta o envio do formulário
+// Escuta envio do formulário
 form.addEventListener("submit", function (event) {
-    event.preventDefault(); // Prevent page reload / Evita recarregar a página
+    event.preventDefault(); // Prevent page reload / Evita recarregar
 
     // Create character object
-    // Cria objeto do personagem com os dados do formulário
     const character = {
         name: document.getElementById("name").value,
         race: document.getElementById("race").value,
@@ -29,11 +32,15 @@ form.addEventListener("submit", function (event) {
         mastery: document.getElementById("mastery").value
     };
 
-    // Show data in console (test)
-    // Mostra no console para teste
-    console.log("Character created:", character);
+    // Add new character to array
+    characters.push(character);
 
-    // Clear form after submit
-    // Limpa o formulário após salvar
+    // Save updated array in localStorage
+    localStorage.setItem("characters", JSON.stringify(characters));
+
+    console.log("Character saved:", character);
+    console.log("All characters:", characters);
+
+    // Clear form
     form.reset();
 });
