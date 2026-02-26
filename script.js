@@ -1,21 +1,38 @@
 // RPG Character Manager
-// Step 2: Save characters in localStorage
-// Etapa 2: Salvar personagens no localStorage
+// Step 3: Render characters on screen
+// Etapa 3: Mostrar personagens na tela
 
-// Get form element
-// Pega o formulário
 const form = document.getElementById("characterForm");
+const characterList = document.getElementById("characterList");
 
 // Get characters from localStorage or create empty array
-// Pega personagens salvos ou cria lista vazia
 let characters = JSON.parse(localStorage.getItem("characters")) || [];
 
-// Listen to submit event
-// Escuta envio do formulário
-form.addEventListener("submit", function (event) {
-    event.preventDefault(); // Prevent page reload / Evita recarregar
+// Function to render characters
+// Função para mostrar os personagens na tela
+function renderCharacters() {
+    characterList.innerHTML = ""; // Clear previous content
 
-    // Create character object
+    characters.forEach((character, index) => {
+        const card = document.createElement("div");
+        card.classList.add("character-card");
+
+        // Only name for now (as requested)
+        const nameElement = document.createElement("h3");
+        nameElement.textContent = character.name;
+
+        card.appendChild(nameElement);
+        characterList.appendChild(card);
+    });
+}
+
+// When page loads, render saved characters
+renderCharacters();
+
+// Listen to form submit
+form.addEventListener("submit", function (event) {
+    event.preventDefault();
+
     const character = {
         name: document.getElementById("name").value,
         race: document.getElementById("race").value,
@@ -32,15 +49,11 @@ form.addEventListener("submit", function (event) {
         mastery: document.getElementById("mastery").value
     };
 
-    // Add new character to array
     characters.push(character);
 
-    // Save updated array in localStorage
     localStorage.setItem("characters", JSON.stringify(characters));
 
-    console.log("Character saved:", character);
-    console.log("All characters:", characters);
-
-    // Clear form
     form.reset();
+
+    renderCharacters(); // Update screen after saving
 });
