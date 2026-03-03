@@ -1,5 +1,5 @@
 // RPG Character Manager
-// Step 6: Add delete functionality
+// Step 7: Add edit functionality
 
 const form = document.getElementById("characterForm");
 const characterList = document.getElementById("characterList");
@@ -10,7 +10,6 @@ let characters = JSON.parse(localStorage.getItem("characters")) || [];
 // Hide list initially
 characterList.style.display = "none";
 
-// Toggle show/hide list
 toggleButton.addEventListener("click", function () {
     if (characterList.style.display === "none") {
         characterList.style.display = "block";
@@ -21,7 +20,6 @@ toggleButton.addEventListener("click", function () {
     }
 });
 
-// Render characters
 function renderCharacters() {
     characterList.innerHTML = "";
 
@@ -38,6 +36,9 @@ function renderCharacters() {
 
         const viewButton = document.createElement("button");
         viewButton.textContent = "View More";
+
+        const editButton = document.createElement("button");
+        editButton.textContent = "Edit";
 
         const deleteButton = document.createElement("button");
         deleteButton.textContent = "Delete";
@@ -57,7 +58,6 @@ function renderCharacters() {
             <p>Mastery: ${character.mastery}</p>
         `;
 
-        // Toggle details
         viewButton.addEventListener("click", function () {
             if (details.style.display === "none") {
                 details.style.display = "block";
@@ -68,8 +68,27 @@ function renderCharacters() {
             }
         });
 
-        // Delete character
         deleteButton.addEventListener("click", function () {
+            characters.splice(index, 1);
+            localStorage.setItem("characters", JSON.stringify(characters));
+            renderCharacters();
+        });
+
+        editButton.addEventListener("click", function () {
+            document.getElementById("name").value = character.name;
+            document.getElementById("race").value = character.race;
+            document.getElementById("age").value = character.age;
+            document.getElementById("gender").value = character.gender;
+            document.getElementById("profession").value = character.profession;
+            document.getElementById("image").value = character.image;
+            document.getElementById("health").value = character.health;
+            document.getElementById("mana").value = character.mana;
+            document.getElementById("vigor").value = character.vigor;
+            document.getElementById("skill").value = character.skill;
+            document.getElementById("perception").value = character.perception;
+            document.getElementById("intelligence").value = character.intelligence;
+            document.getElementById("mastery").value = character.mastery;
+
             characters.splice(index, 1);
             localStorage.setItem("characters", JSON.stringify(characters));
             renderCharacters();
@@ -78,6 +97,7 @@ function renderCharacters() {
         card.appendChild(nameElement);
         card.appendChild(basicInfo);
         card.appendChild(viewButton);
+        card.appendChild(editButton);
         card.appendChild(deleteButton);
         card.appendChild(details);
 
@@ -85,10 +105,8 @@ function renderCharacters() {
     });
 }
 
-// Load on page start
 renderCharacters();
 
-// Submit form
 form.addEventListener("submit", function (event) {
     event.preventDefault();
 
