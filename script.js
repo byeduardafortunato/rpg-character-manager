@@ -1,5 +1,5 @@
 // RPG Character Manager
-// Step 7: Add edit functionality
+// Step 8: Add image upload & display
 
 const form = document.getElementById("characterForm");
 const characterList = document.getElementById("characterList");
@@ -7,7 +7,6 @@ const toggleButton = document.getElementById("toggleList");
 
 let characters = JSON.parse(localStorage.getItem("characters")) || [];
 
-// Hide list initially
 characterList.style.display = "none";
 
 toggleButton.addEventListener("click", function () {
@@ -24,9 +23,18 @@ function renderCharacters() {
     characterList.innerHTML = "";
 
     characters.forEach((character, index) => {
-
         const card = document.createElement("div");
         card.classList.add("character-card");
+
+        // IMAGE
+        if (character.imageData) {
+            const img = document.createElement("img");
+            img.src = character.imageData;
+            img.alt = character.name;
+            img.style.width = "120px";
+            img.style.height = "120px";
+            card.appendChild(img);
+        }
 
         const nameElement = document.createElement("h3");
         nameElement.textContent = character.name;
@@ -80,7 +88,6 @@ function renderCharacters() {
             document.getElementById("age").value = character.age;
             document.getElementById("gender").value = character.gender;
             document.getElementById("profession").value = character.profession;
-            document.getElementById("image").value = character.image;
             document.getElementById("health").value = character.health;
             document.getElementById("mana").value = character.mana;
             document.getElementById("vigor").value = character.vigor;
@@ -115,25 +122,61 @@ form.addEventListener("submit", function (event) {
         return;
     }
 
-    const character = {
-        name: document.getElementById("name").value,
-        race: document.getElementById("race").value,
-        age: document.getElementById("age").value,
-        gender: document.getElementById("gender").value,
-        profession: document.getElementById("profession").value,
-        image: document.getElementById("image").value,
-        health: document.getElementById("health").value,
-        mana: document.getElementById("mana").value,
-        vigor: document.getElementById("vigor").value,
-        skill: document.getElementById("skill").value,
-        perception: document.getElementById("perception").value,
-        intelligence: document.getElementById("intelligence").value,
-        mastery: document.getElementById("mastery").value
-    };
+    const fileInput = document.getElementById("image");
+    let imageData = "";
 
-    characters.push(character);
-    localStorage.setItem("characters", JSON.stringify(characters));
+    if (fileInput.files.length > 0) {
+        const file = fileInput.files[0];
+        const reader = new FileReader();
 
-    form.reset();
-    renderCharacters();
+        reader.onload = function () {
+            imageData = reader.result;
+
+            const character = {
+                name: document.getElementById("name").value,
+                race: document.getElementById("race").value,
+                age: document.getElementById("age").value,
+                gender: document.getElementById("gender").value,
+                profession: document.getElementById("profession").value,
+                imageData: imageData,
+                health: document.getElementById("health").value,
+                mana: document.getElementById("mana").value,
+                vigor: document.getElementById("vigor").value,
+                skill: document.getElementById("skill").value,
+                perception: document.getElementById("perception").value,
+                intelligence: document.getElementById("intelligence").value,
+                mastery: document.getElementById("mastery").value
+            };
+
+            characters.push(character);
+            localStorage.setItem("characters", JSON.stringify(characters));
+
+            form.reset();
+            renderCharacters();
+        };
+
+        reader.readAsDataURL(file);
+    } else {
+        const character = {
+            name: document.getElementById("name").value,
+            race: document.getElementById("race").value,
+            age: document.getElementById("age").value,
+            gender: document.getElementById("gender").value,
+            profession: document.getElementById("profession").value,
+            imageData: "",
+            health: document.getElementById("health").value,
+            mana: document.getElementById("mana").value,
+            vigor: document.getElementById("vigor").value,
+            skill: document.getElementById("skill").value,
+            perception: document.getElementById("perception").value,
+            intelligence: document.getElementById("intelligence").value,
+            mastery: document.getElementById("mastery").value
+        };
+
+        characters.push(character);
+        localStorage.setItem("characters", JSON.stringify(characters));
+
+        form.reset();
+        renderCharacters();
+    }
 });
