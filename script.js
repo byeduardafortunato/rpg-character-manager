@@ -1,11 +1,25 @@
 // RPG Character Manager
-// Step 4: Add view more functionality
-// Etapa 4: Botão para expandir detalhes
+// Step 5: Toggle List
 
 const form = document.getElementById("characterForm");
 const characterList = document.getElementById("characterList");
+const toggleButton = document.getElementById("toggleList");
 
 let characters = JSON.parse(localStorage.getItem("characters")) || [];
+
+// Hide list initially
+characterList.style.display = "none";
+
+// Toggle show/hide list
+toggleButton.addEventListener("click", function () {
+    if (characterList.style.display === "none") {
+        characterList.style.display = "block";
+        toggleButton.textContent = "Hide Characters";
+    } else {
+        characterList.style.display = "none";
+        toggleButton.textContent = "View Saved Characters";
+    }
+});
 
 // Render characters
 function renderCharacters() {
@@ -16,19 +30,15 @@ function renderCharacters() {
         const card = document.createElement("div");
         card.classList.add("character-card");
 
-        // NAME (highlighted)
         const nameElement = document.createElement("h3");
         nameElement.textContent = character.name;
 
-        // Race and Profession (basic info visible)
         const basicInfo = document.createElement("p");
         basicInfo.textContent = `${character.race} | ${character.profession}`;
 
-        // View More button
         const viewButton = document.createElement("button");
         viewButton.textContent = "View More";
 
-        // Hidden details container
         const details = document.createElement("div");
         details.style.display = "none";
 
@@ -44,7 +54,6 @@ function renderCharacters() {
             <p>Mastery: ${character.mastery}</p>
         `;
 
-        // Toggle details
         viewButton.addEventListener("click", function () {
             if (details.style.display === "none") {
                 details.style.display = "block";
