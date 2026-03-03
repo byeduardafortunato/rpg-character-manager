@@ -1,5 +1,5 @@
 // RPG Character Manager
-// Step 5: Toggle List
+// Step 6: Add delete functionality
 
 const form = document.getElementById("characterForm");
 const characterList = document.getElementById("characterList");
@@ -39,6 +39,9 @@ function renderCharacters() {
         const viewButton = document.createElement("button");
         viewButton.textContent = "View More";
 
+        const deleteButton = document.createElement("button");
+        deleteButton.textContent = "Delete";
+
         const details = document.createElement("div");
         details.style.display = "none";
 
@@ -54,6 +57,7 @@ function renderCharacters() {
             <p>Mastery: ${character.mastery}</p>
         `;
 
+        // Toggle details
         viewButton.addEventListener("click", function () {
             if (details.style.display === "none") {
                 details.style.display = "block";
@@ -64,9 +68,17 @@ function renderCharacters() {
             }
         });
 
+        // Delete character
+        deleteButton.addEventListener("click", function () {
+            characters.splice(index, 1);
+            localStorage.setItem("characters", JSON.stringify(characters));
+            renderCharacters();
+        });
+
         card.appendChild(nameElement);
         card.appendChild(basicInfo);
         card.appendChild(viewButton);
+        card.appendChild(deleteButton);
         card.appendChild(details);
 
         characterList.appendChild(card);
