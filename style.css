@@ -1,10 +1,117 @@
+/* ==========================================
+   GLOBAL STYLES
+========================================== */
+
 body {
     font-family: Arial, sans-serif;
+    background-color: #1e1e2f; /* Dark background */
+    color: #ffffff;
+    margin: 0;
+    padding: 0;
 }
 
-.character-card {
-    border: 1px solid #ccc;
-    padding: 10px;
-    margin: 10px 0;
-    background-color: #f9f9f9;
+
+/* Main container */
+.container {
+    max-width: 900px;
+    margin: 40px auto;
+    padding: 20px;
 }
+
+
+/* ==========================================
+   HEADINGS
+========================================== */
+
+h1 {
+    text-align: center;
+    margin-bottom: 30px;
+}
+
+h2 {
+    margin-top: 25px;
+}
+
+
+/* ==========================================
+   FORM STYLING
+========================================== */
+
+form {
+    background-color: #2c2c3f;
+    padding: 20px;
+    border-radius: 8px;
+}
+
+label {
+    display: block;
+    margin-top: 10px;
+}
+
+input {
+    width: 100%;
+    padding: 8px;
+    margin-top: 4px;
+    border-radius: 4px;
+    border: none;
+}
+
+button {
+    margin-top: 15px;
+    padding: 8px 12px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    font-weight: bold;
+}
+
+
+/* Main submit button */
+form button {
+    background-color: #4CAF50;
+    color: white;
+}
+
+
+/* Toggle button */
+#toggleList {
+    background-color: #444;
+    color: white;
+    margin-top: 20px;
+}
+
+
+/* ==========================================
+   CHARACTER CARDS
+========================================== */
+
+.character-card {
+    background-color: #2c2c3f;
+    border-radius: 8px;
+    padding: 15px;
+    margin-top: 20px;
+}
+
+
+/* Character image */
+.character-card img {
+    border-radius: 8px;
+    object-fit: cover;
+    margin-bottom: 10px;
+}
+
+
+/* Card buttons */
+.character-card button {
+    margin-right: 5px;
+    margin-top: 10px;
+    background-color: #555;
+    color: white;
+}
+
+
+/* Delete button highlight */
+.character-card button:nth-of-type(3) {
+    background-color: #b33939;
+}
+
