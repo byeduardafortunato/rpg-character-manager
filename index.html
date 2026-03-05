@@ -6,14 +6,18 @@
     <title>RPG Character Manager</title>
     <link rel="stylesheet" href="style.css">
 </head>
+
 <body>
     <div class="container">
 
         <h1>RPG Character Manager</h1>
 
-        <!-- Character Form -->
+        <!-- ==========================
+             CHARACTER FORM
+        =========================== -->
         <form id="characterForm">
 
+            <!-- Basic Information -->
             <h2>Basic Information</h2>
 
             <label>Name</label>
@@ -31,41 +35,48 @@
             <label>Profession</label>
             <input type="text" id="profession" required>
 
+            <!-- Image Upload -->
             <label>Image</label>
-            <input type="file" id="image">
+            <input type="file" id="image" accept="image/*">
 
+
+            <!-- Status Section -->
             <h2>Status</h2>
 
             <label>Health</label>
-            <input type="number" id="health" min="0" required>
+            <input type="number" id="health" min="0" max="100" required>
 
             <label>Mana</label>
-            <input type="number" id="mana" min="0" required>
+            <input type="number" id="mana" min="0" max="100" required>
 
+
+            <!-- Attributes Section -->
             <h2>Attributes</h2>
 
             <label>Vigor</label>
-            <input type="number" id="vigor" min="0" required>
+            <input type="number" id="vigor" min="0" max="100" required>
 
             <label>Skill</label>
-            <input type="number" id="skill" min="0" required>
+            <input type="number" id="skill" min="0" max="100" required>
 
             <label>Perception</label>
-            <input type="number" id="perception" min="0" required>
+            <input type="number" id="perception" min="0" max="100" required>
 
             <label>Intelligence</label>
-            <input type="number" id="intelligence" min="0" required>
+            <input type="number" id="intelligence" min="0" max="100" required>
 
             <label>Mastery</label>
-            <input type="number" id="mastery" min="0" required>
+            <input type="number" id="mastery" min="0" max="100" required>
 
+            <!-- Submit -->
             <button type="submit">Save Character</button>
 
         </form>
 
-        <!-- Characters will appear here -->
-         <button id="toggleList">View Saved Characters</button>
-         <div id="characterList"></div>
+        <!-- Toggle and Character List -->
+        <button id="toggleList">View Saved Characters</button>
+
+        <div id="characterList"></div>
 
     </div>
 

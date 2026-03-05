@@ -68,14 +68,14 @@ button {
 
 /* Main submit button */
 form button {
-    background-color: #4CAF50;
+    background-color: #57358f;
     color: white;
 }
 
 
 /* Toggle button */
 #toggleList {
-    background-color: #444;
+    background-color: #57358f;
     color: white;
     margin-top: 20px;
 }
@@ -105,7 +105,7 @@ form button {
 .character-card button {
     margin-right: 5px;
     margin-top: 10px;
-    background-color: #555;
+    background-color: #57358f;
     color: white;
 }
 
